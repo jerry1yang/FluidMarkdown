@@ -98,9 +98,10 @@ public class PrinterMarkDownTextView extends AppCompatTextView implements IMarkd
             }
         }
 
-        setHighlightColor(Color.TRANSPARENT);
+        // 不再强制隐藏选中高亮（交还给主题 android:textColorHighlight），
+        // 也不再用 onLongClick 吞掉长按——否则会拦截系统的「长按进入文本选择」，
+        // 上层 textIsSelectable 的展示（聊天气泡 / 纪要 / 决策）将无法长按选中。
         addTextChangedListener(this);
-        setOnLongClickListener(v -> true);
     }
 
     public void init(@NonNull MarkdownStyles styles, ElementClickEventCallback callback) {
