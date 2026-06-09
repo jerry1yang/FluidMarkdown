@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.fluid.afm'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.fluid.afm"
