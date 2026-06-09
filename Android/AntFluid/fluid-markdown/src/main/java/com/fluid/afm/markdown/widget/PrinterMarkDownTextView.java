@@ -318,7 +318,10 @@ public class PrinterMarkDownTextView extends AppCompatTextView implements IMarkd
             if (mSizeChangedListener != null) {
                 mSizeChangedListener.onSizeChanged(getMeasuredWidth(), newHeight);
             }
-            if(newHeight > mHeight) {
+            // minHeight 锁仅服务打字机逐字防抖（防止行数变化导致高度回缩抖动）。
+            // 静态渲染（setMarkdownText / 打字结束后 isPrinting=false）不再累积，否则中间测量峰值
+            // 会把 minHeight 永久钉死，内容定稿后比峰值矮 → 底部留白。
+            if(isPrinting && newHeight > mHeight) {
                 setMinHeight(newHeight);
             }
             mHeight = newHeight;
