@@ -11,3 +11,4 @@ Podfile_cp
 .DS_S*
 .DS_Store
 node_modules
+.idea/
